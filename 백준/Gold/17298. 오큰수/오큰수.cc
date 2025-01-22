@@ -1,48 +1,36 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <queue>
-#include <set>
-#include <list>
-#include <deque>
 #include <stack>
+
 using namespace std;
-#define INF 1e9
 
-int N;
-int arr[1000001];
-int nge[1000001];
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
-stack<int> s;
+    int n; // 수열의 크기
+    cin >> n;
 
-void checkNge(int value){
-	while(!s.empty()){
-		int si = s.top();
-		if (arr[si] < value) {
-			nge[si] = value;
-			s.pop();
-		}
-		else break;
-	}
-}
+    vector<int> ret(n, -1); // 결과 배열, 오큰수를 저장. 초기값은 -1.
+    vector<int> table(n, -1); // 입력받은 수열
+    stack<int> s; // 스택, 아직 오큰수를 찾지 못한 원소들의 인덱스 저장
 
-int main(){
-	cin >> N;
-	for (int i =0 ;i < N; i++){
-		cin >>arr[i];
-	}
-	s.push(0);
-	for (int i = 1; i < N; i++){
-		checkNge(arr[i]);
-		s.push(i);
-	}
-	while(!s.empty()){
-		int si = s.top();
-		nge[si] = -1;
-		s.pop();
-	}
+    // 수열의 원소를 입력받으면서 오큰수 찾기
+    for (int i = 0; i < n; i++) {
+        cin >> table[i]; // 수열의 원소 입력
+        // 스택이 비어있지 않고, 현재 원소가 스택 top의 원소보다 큰 경우
+        while (s.size() && table[s.top()] < table[i]) {
+            ret[s.top()] = table[i]; // 오큰수를 결과 배열에 저장
+            s.pop(); // 스택에서 제거
+        }
+        s.push(i); // 현재 원소의 인덱스를 스택에 저장
+    }
 
-	for (int i = 0 ; i < N; i++){
-		cout << nge[i] << " ";
-	}
+    // 결과 출력
+    for(int i = 0; i < n; i++) {
+        cout << ret[i] << " ";
+    }
+
+    return 0;
 }

@@ -35,7 +35,7 @@ int main(){
     }
     int en = lower_bound(addV.begin(), addV.end(), N) - addV.begin();
     // int en = 0;
-    while(st <= en && en < addV.size()){
+    while(st < en && en < addV.size()){
         long long cur = addV[en] - addV[st];
         if (cur == N){
             // cout << "\n" << addV[en] << " - " << addV[st] << "\n";

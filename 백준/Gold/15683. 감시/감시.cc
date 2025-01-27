@@ -71,20 +71,18 @@ void checkCctv(){
 			if (arr[posY][posX] == 1){
 				monitor(posY, posX, dir);
 			} else if (arr[posY][posX] == 2 ) {
-				// if (dir > 1) continue;
+				if (dir > 1) continue;
 				monitor(posY, posX, dir);
 				monitor(posY, posX, (dir + 2) % 4);
 			} else if (arr[posY][posX] == 3){
-				// if (dir > 1) continue;
 				monitor(posY, posX, dir);
 				monitor(posY, posX, (dir + 1) % 4);
 			} else if (arr[posY][posX] == 4){
-				// if (dir > 1) continue;
 				monitor(posY, posX, dir);
 				monitor(posY, posX, (dir + 1) % 4);
 				monitor(posY, posX, (dir + 2) % 4);
 			} else if (arr[posY][posX] == 5){
-				// if (dir > 1) continue;
+				if (dir > 0) continue;
 				monitor(posY, posX, dir);
 				monitor(posY, posX, (dir + 1) % 4);
 				monitor(posY, posX, (dir + 2) % 4);

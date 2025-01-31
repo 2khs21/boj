@@ -1,11 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <unordered_map>
 using namespace std;
 
 int T, F;
-map<int,int> parents;
-map<int, int> relationshipCount;
+unordered_map<int,int> parents;
+unordered_map<int, int> relationshipCount;
 
 int findParent(int child){
 	int parent = parents[child] == child ? child : parents[child] = findParent(parents[child]);
@@ -31,7 +32,7 @@ void func(){
 	cin >> F;
 	vector<vector<int>> v;
 	v.resize(F);
-	map<string, int> m;
+	unordered_map<string, int> m;
 	int nameIndex = 1;
 	
 	for (int i = 0 ; i < F; i++){

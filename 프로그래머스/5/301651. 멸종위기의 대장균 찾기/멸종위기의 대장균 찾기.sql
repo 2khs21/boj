@@ -27,6 +27,7 @@ WHERE ID IN (
         )
     )
 GROUP BY GEN
+ORDER BY GEN
 
 
 # WITH RECURSIVE cte(ID, PARENT_ID, GEN) AS (

@@ -1,0 +1,32 @@
+# 개발자의  SKILL_CODE 가 어떤 CODE를 포함하는지
+
+-- 코드를 작성해주세요
+
+WITH RECURSIVE D_TABLE AS (
+    SELECT
+        ID,
+        EMAIL,
+        GROUP_CONCAT(DISTINCT CATEGORY) AS C,
+        GROUP_CONCAT(NAME) AS S
+    
+    FROM DEVELOPERS
+    
+    LEFT JOIN SKILLCODES
+    ON SKILL_CODE & CODE
+    
+    GROUP BY ID, EMAIL
+)
+
+SELECT 
+    CASE 
+        WHEN S LIKE '%Python%' AND C LIKE '%Front End%' THEN 'A'
+        WHEN S LIKE '%C#%' THEN 'B'
+        WHEN C LIKE '%Front End%' THEN 'C'
+    END AS GRADE,
+    ID, EMAIL
+FROM D_TABLE
+HAVING GRADE IS NOT NULL
+ORDER BY GRADE, ID
+
+
+

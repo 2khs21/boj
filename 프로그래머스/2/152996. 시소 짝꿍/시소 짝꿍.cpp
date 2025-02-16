@@ -15,6 +15,7 @@ long long solution(vector<int> weights) {
             int l = weights[i];
             int r = weights[j];
     
+            
             if (l == r || 3*l == 2*r || 4*l == 2*r || 4*l == 3*r) {
                 
                 answer++; 
@@ -37,7 +38,7 @@ long long solution(vector<int> weights) {
 //     for (int i = 0 ; i < weights.size() - 1; i++){
 //         int l = weights[i];
         
-//         cout << l  << "\n";
+//         // cout << l  << "\n";
 //         vector<int> targets;
         
 //         targets.push_back(l);
@@ -45,22 +46,24 @@ long long solution(vector<int> weights) {
 //         targets.push_back(2*l);
 //         if (l * 4 % 3 == 0) targets.push_back(l*4/3);
     
-//         cout << "L : " << l <<"\n";
+//         // cout << "L : " << l <<"\n";
 //         for (auto t : targets){
             
-//             cout << "t: " << t << " \ncandi : ";
+//             // cout << "t: " << t << " \ncandi : ";
             
-//             for (auto it = weights.begin() + i + 1; it != weights.end(); it++){
-//                 cout << *it <<" ";
-//             }
-//             cout << "\n";
-//             if (find(weights.begin() + i + 1, weights.end(), t) != weights.end()) {
+//             // for (auto it = weights.begin() + i + 1; it != weights.end(); it++){
+//                 // cout << *it <<" ";
+//             // }
+//             // cout << "\n";
+//             if (find(weights.begin() + i + 1, weights.end(), t) != weights.end()) { // 중복된게 여러개있을때 못찾구나
 //                 answer++;
-//                 cout << "find! ";
-//                 break;
+//                 // cout << "\n --- find! " << answer << " \n";
+                
+                
+//                 // break;
 //             }
 //         }
-//         cout << "\n";
+//         // cout << "\n";
 //     }
     
 //     return answer;

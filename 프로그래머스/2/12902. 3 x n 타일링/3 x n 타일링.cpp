@@ -14,8 +14,8 @@ int solution(int n) {
     dp[2] = 11;
     
     for (int i = 3; i <= n/2; i++){
-        dp[i] = (dp[i - 1] * 4 - dp[i - 2]);
-        dp[i] = (dp[i] + 1000000007) % 1000000007;
+        dp[i] = dp[i - 1] * 4 - dp[i - 2];
+        dp[i] = dp[i] % 1000000007;
         
     }
     answer = dp[n/2];

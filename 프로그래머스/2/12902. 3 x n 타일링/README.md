@@ -1,6 +1,6 @@
 # [level 2] 3 x n 타일링 - 12902 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12902) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12902#qna) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 02월 18일 05:33:43
+2025년 02월 18일 05:34:34
 
 ### 문제 설명
 

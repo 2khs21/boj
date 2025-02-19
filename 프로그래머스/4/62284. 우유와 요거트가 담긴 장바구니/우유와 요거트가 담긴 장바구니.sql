@@ -1,0 +1,10 @@
+-- 코드를 입력하세요
+
+SELECT CART_ID FROM (
+    SELECT *, GROUP_CONCAT(DISTINCT NAME SEPARATOR ' - ') AS NS FROM CART_PRODUCTS
+    WHERE NAME IN ('Milk', 'Yogurt')
+    GROUP BY CART_ID
+    
+    HAVING (NS LIKE '%MILK%' AND NS LIKE '%Yogurt%')
+    ORDER BY 1
+    ) AS NT

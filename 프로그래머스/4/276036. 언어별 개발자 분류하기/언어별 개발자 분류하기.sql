@@ -1,32 +1,89 @@
-# 개발자의  SKILL_CODE 가 어떤 CODE를 포함하는지
 
--- 코드를 작성해주세요
-
-WITH RECURSIVE D_TABLE AS (
-    SELECT
-        ID,
-        EMAIL,
-        GROUP_CONCAT(DISTINCT CATEGORY) AS C,
-        GROUP_CONCAT(NAME) AS S
-    
+WITH CTE1 AS (
+    SELECT ID
+    , GROUP_CONCAT(DISTINCT NAME SEPARATOR "|") AS NS
+    , GROUP_CONCAT(DISTINCT CATEGORY SEPARATOR "|") AS CS 
+    , EMAIL
     FROM DEVELOPERS
-    
-    LEFT JOIN SKILLCODES
-    ON SKILL_CODE & CODE
-    
-    GROUP BY ID, EMAIL
+
+    JOIN  SKILLCODES AS S
+
+    ON SKILL_CODE & S.CODE
+
+    GROUP BY ID,EMAIL
+), CTE2 AS (
+
+    SELECT 
+    CASE WHEN CS LIKE "%Front End%" AND NS LIKE "%Python%" THEN 'A'
+     WHEN NS LIKE "%C#%" THEN 'B'
+     WHEN CS LIKE "%Front End%" THEN 'C'
+    END AS GRADE
+    , ID, EMAIL
+    FROM CTE1
 )
 
-SELECT 
-    CASE 
-        WHEN S LIKE '%Python%' AND C LIKE '%Front End%' THEN 'A'
-        WHEN S LIKE '%C#%' THEN 'B'
-        WHEN C LIKE '%Front End%' THEN 'C'
-    END AS GRADE,
-    ID, EMAIL
-FROM D_TABLE
+SELECT * FROM CTE2
+WHERE GRADE IS NOT NULL
+ORDER BY 1, 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # 개발자의  SKILL_CODE 가 어떤 CODE를 포함하는지
+
+# -- 코드를 작성해주세요
+
+# WITH D_TABLE AS (
+#     SELECT
+#         ID,
+#         EMAIL,
+#         GROUP_CONCAT(DISTINCT CATEGORY) AS C,
+#         GROUP_CONCAT(NAME SEPARATOR ' + ') AS S
+    
+#     FROM DEVELOPERS
+#     LEFT JOIN SKILLCODES 
+
+#     ON SKILL_CODE & CODE  # 조건에 참인 부분만 남긴다!
+    
+#     GROUP BY ID, EMAIL # ID, EMAIL 을 기준으로 그룹화해라.
+# )
+
+# SELECT * FROM D_TABLE
+
+/*
+
+WITH CTE AS (
+SELECT ID, EMAIL, GROUP_CONCAT(NAME SEPARATOR '-') AS SKILLS, GROUP_CONCAT(CATEGORY SEPARATOR '-') AS CS FROM DEVELOPERS AS D
+LEFT JOIN SKILLCODES AS S
+ON D.SKILL_CODE & S.CODE
+GROUP BY ID, EMAIL
+)
+
+SELECT
+CASE 
+    WHEN CS LIKE '%Front End%' AND SKILLS LIKE '%Python%' THEN 'A'
+    WHEN SKILLS LIKE '%C#%' THEN 'B'
+    WHEN CS LIKE '%Front End%' THEN 'C'
+END AS GRADE, ID , EMAIL
+
+FROM CTE
 HAVING GRADE IS NOT NULL
-ORDER BY GRADE, ID
 
+ORDER BY 1,2
 
-
+*/

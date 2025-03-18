@@ -7,6 +7,7 @@ using namespace std;
 string str, boom, ans;
 
 int main(){
+        cin.tie(0); cout.tie(0); ios::sync_with_stdio(false);
 	cin >> str >> boom;
 
 	int boomLen = boom.length();

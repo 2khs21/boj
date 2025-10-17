@@ -26,13 +26,18 @@ def printGrid(grid):
     for row in grid:
         print(''.join(row))
         
+def recursiveDraw(n, grid, cx, cy):
+		if n == 0:
+				return
+		drawR(grid, cx, cy, n)
+		recursiveDraw(n - 1, grid, cx, cy)
+
 
 n = int(input())
 grid = createGrid(n)
 cx, cy = getCenter(n)
 
-while(n):
-    drawR(grid, cx, cy, n)
-    n -= 1
+recursiveDraw(n, grid, cx, cy)
+
 
 printGrid(grid)

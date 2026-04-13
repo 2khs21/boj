@@ -25,7 +25,7 @@ def solution():
 					answer.append(s1[i - 1])
 					i -= 1
 					j -= 1
-			elif grid[i - 1][j] >= grid[i][j - 1]:
+			elif grid[i - 1][j] > grid[i][j - 1]:
 					i -= 1
 			else:
 					j -= 1

@@ -32,7 +32,8 @@ def solution():
 
 	answer.reverse()
 
-	print(grid[len(s1)][len(s2)])
+	# print(grid[len(s1)][len(s2)])
+	print(len(answer))
 	if answer:
 			print(''.join(answer))
 
